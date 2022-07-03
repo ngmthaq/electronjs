@@ -1,7 +1,9 @@
-import React from "react";
-import { ThemeProvider, StyledEngineProvider } from "@mui/system";
-import Router from "./router";
-import theme from "./theme/material";
+import React from "react"
+import { ThemeProvider, StyledEngineProvider } from "@mui/system"
+import Router from "./router"
+import theme from "./theme/material"
+import "./theme/styles/index.scss"
+import "./language"
 
 const App = () => {
   return (
@@ -10,7 +12,7 @@ const App = () => {
         <Router />
       </ThemeProvider>
     </StyledEngineProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

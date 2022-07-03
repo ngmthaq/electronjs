@@ -1,10 +1,13 @@
 import React from "react"
+import { useTranslation } from "react-i18next"
 import { Box, CardMedia, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles"
-import { ImageConst } from "../../constants"
+import { ArrowBack } from "@mui/icons-material"
+import { ImageConst, LangConst } from "../../constants"
 
 const NotFound = () => {
   const classes = useStyles()
+  const { t: getLabel } = useTranslation()
 
   return (
     <Box className={classes.root}>
@@ -13,7 +16,13 @@ const NotFound = () => {
         className={classes.img}
         src={ImageConst.ErrorImage}
       />
-      <Typography variant="h1">404</Typography>
+      <Typography variant="h5" className={classes.text}>
+        404 | {getLabel(LangConst.TXT_ERROR)}
+      </Typography>
+      <Box className={classes.back}>
+        <ArrowBack className={classes.icon} />
+        <Typography>{getLabel(LangConst.TXT_BACK)}</Typography>
+      </Box>
     </Box>
   )
 }
@@ -30,8 +39,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   img: {
-    width: 400,
-    height: 400,
+    width: 200,
+    height: 200,
     objectFit: "contain",
+  },
+  text: {
+    marginBottom: 12,
+  },
+  icon: {
+    marginRight: 4,
+  },
+  back: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
   },
 }))

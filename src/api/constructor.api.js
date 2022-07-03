@@ -2,9 +2,6 @@ const axios = require('axios');
 
 class Api {
   constructor() {
-    // Get language
-    this.lang = getLocale();
-
     // Get timezone of browser
     this.tz = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Saigon'
       ? 'Asia/Ho_Chi_Minh'
@@ -15,7 +12,6 @@ class Api {
 
     // Config axios default headers
     this.api.defaults.headers.common['Timezone'] = this.tz;
-    this.api.defaults.headers.common['App-Language'] = this.lang;
     this.api.defaults.headers.common['Cache-Control'] = 'no-cache';
     this.api.defaults.headers.common['Cache-control'] = 'no-store';
     this.api.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
