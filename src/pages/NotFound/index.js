@@ -10,7 +10,7 @@ const NotFound = () => {
   const { t: getLabel } = useTranslation()
 
   useEffect(() => {
-    console.log("Page not found")
+    console.error("Page not found")
   }, [])
 
   return (
