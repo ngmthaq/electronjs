@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { Box, CardMedia, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles"
@@ -8,6 +8,10 @@ import { ImageConst, LangConst } from "../../constants"
 const NotFound = () => {
   const classes = useStyles()
   const { t: getLabel } = useTranslation()
+
+  useEffect(() => {
+    console.log("Page not found")
+  }, [])
 
   return (
     <Box className={classes.root}>
