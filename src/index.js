@@ -1,7 +1,7 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App"
+import "./theme/styles/index.scss"
 
-const container = document.getElementById("app");
-const root = createRoot(container);
-root.render(<App />);
+const container = document.getElementById("app")
+ReactDOM.render(<App />, container)

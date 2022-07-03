@@ -79,13 +79,23 @@
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^7.1.1",
     "electron": "19.0.6",
+    "file-loader": "^6.2.0",
     "node-loader": "^2.0.0",
-    "style-loader": "^3.3.1"
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.6",
+    "@mui/styles": "^5.8.6",
     "axios": "^0.27.2",
     "electron-squirrel-startup": "^1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^6.3.0"
   }
 }

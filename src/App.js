@@ -1,11 +1,15 @@
 import React from "react";
+import { ThemeProvider, StyledEngineProvider } from "@mui/system";
+import Router from "./router";
+import theme from "./theme/material";
 
 const App = () => {
   return (
-    <div>
-      <h1>💖 Hello World!</h1>
-      <p>Welcome to your Electron application.</p>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

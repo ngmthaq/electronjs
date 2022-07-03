@@ -18,5 +18,5 @@
 
 require("../src");
 
-console.log("Running application");
+console.log("Rendering application");
 console.log("Hello world 👋👋👋👋👋");
