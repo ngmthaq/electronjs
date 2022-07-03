@@ -14,27 +14,9 @@
  * To enable Node.js integration in this file, open up `main.js` and enable the `nodeIntegration`
  * flag:
  *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
  */
 
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "../src/App";
+require("../src");
 
-const container = document.getElementById("app");
-const root = createRoot(container);
-root.render(<App />);
-
-console.log(
-  '👋 This message is being logged by "renderer.js", included via webpack'
-);
+console.log("Running application");
+console.log("Hello world 👋👋👋👋👋");
