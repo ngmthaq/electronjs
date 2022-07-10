@@ -1,4 +1,4 @@
-export const VIETNAM_LOCALE = "vi"
+export const VIETNAM_LOCALE = "vi";
 
 // Array
 
@@ -9,5 +9,5 @@ export const VIETNAM_LOCALE = "vi"
 // Placeholder
 
 // Text
-export const TXT_ERROR = "TXT_ERROR"
-export const TXT_BACK = "TXT_BACK"
+export const TXT_ERROR = "TXT_ERROR";
+export const TXT_BACK = "TXT_BACK";

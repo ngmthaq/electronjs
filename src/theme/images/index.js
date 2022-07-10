@@ -1,3 +1,4 @@
-import ErrorImage from "./error-image.png"
+import ErrorImage from "./error-image.png";
+import LogoIcon from "./LogoIcon";
 
-export { ErrorImage }
+export { ErrorImage, LogoIcon };

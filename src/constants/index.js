@@ -1,8 +1,15 @@
-import * as ApiConst from "./api.const"
-import * as AppConst from "./app.const"
-import * as KeyConst from "./key.const"
-import * as LangConst from "./lang.const"
-import * as PathConst from "./path.const"
-import * as ImageConst from "../theme/images"
+import * as ApiConstant from "./api.const";
+import * as AppConstant from "./app.const";
+import * as KeyConstant from "./key.const";
+import * as LangConstant from "./lang.const";
+import * as PathConstant from "./path.const";
+import * as ImageConstant from "../theme/images";
 
-export { ApiConst, AppConst, KeyConst, LangConst, PathConst, ImageConst }
+export {
+  ApiConstant,
+  AppConstant,
+  KeyConstant,
+  LangConstant,
+  PathConstant,
+  ImageConstant,
+};

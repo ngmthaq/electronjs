@@ -6,4 +6,4 @@ class AuthApi extends Api {
 
 export default function authApi() {
   return new AuthApi();
-};
+}

@@ -1,20 +1,26 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { PathConstant } from "../constants";
 import { AuthRoute } from "./components";
-import NotFound from "../pages/NotFound";
+import Error from "../pages/Error";
+import Login from "../pages/Login";
 
 const Router = () => {
+  const state = useSelector((state) => state);
+
   useEffect(() => {
-    console.log("Router is running");
-  }, []);
+    console.log("State", state);
+  }, [state]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path="*" element={<NotFound />} />
+        <Route path={PathConstant.ROOT} element={<Login />} />
+        <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
-  )
+    </HashRouter>
+  );
 };
 
 export default Router;

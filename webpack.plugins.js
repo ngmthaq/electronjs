@@ -1,5 +1,3 @@
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
-module.exports = [
-  new Dotenv()
-];
+module.exports = [new Dotenv()];

@@ -1,37 +1,37 @@
-import React, { useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { Box, CardMedia, Typography } from "@mui/material"
-import { makeStyles } from "@mui/styles"
-import { ArrowBack } from "@mui/icons-material"
-import { ImageConst, LangConst } from "../../constants"
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Box, CardMedia, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { ArrowBack } from "@mui/icons-material";
+import { ImageConstant, LangConstant } from "../../constants";
 
 const NotFound = () => {
-  const classes = useStyles()
-  const { t: getLabel } = useTranslation()
+  const classes = useStyles();
+  const { t: getLabel } = useTranslation();
 
   useEffect(() => {
-    console.error("Page not found")
-  }, [])
+    console.error("Page not found");
+  }, []);
 
   return (
     <Box className={classes.root}>
       <CardMedia
         component={"img"}
         className={classes.img}
-        src={ImageConst.ErrorImage}
+        src={ImageConstant.ErrorImage}
       />
       <Typography variant="h5" className={classes.text}>
-        404 | {getLabel(LangConst.TXT_ERROR)}
+        {getLabel(LangConstant.TXT_ERROR)}
       </Typography>
       <Box className={classes.back}>
         <ArrowBack className={classes.icon} />
-        <Typography>{getLabel(LangConst.TXT_BACK)}</Typography>
+        <Typography>{getLabel(LangConstant.TXT_BACK)}</Typography>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,4 +59,4 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     cursor: "pointer",
   },
-}))
+}));

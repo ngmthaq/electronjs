@@ -1,5 +1,5 @@
-const black = "#2e2e2e"
-const white = "#f0f0f0"
+const black = "#2e2e2e";
+const white = "#f0f0f0";
 
 const palette = {
   mode: "light",
@@ -43,6 +43,6 @@ const palette = {
     dark: "#388e3c",
     contrastText: white,
   },
-}
+};
 
-export default palette
+export default palette;
