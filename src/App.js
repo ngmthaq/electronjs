@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
-import { ThemeProvider, StyledEngineProvider } from "@mui/system";
-import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 import Router from "./router";
-import theme from "./theme/material";
-import store from "./store";
-import "./theme/styles/index.scss";
-import "./language";
+import PrimaryLoading from "./components/PrimaryLoading";
 
 const App = () => {
+  const state = useSelector((state) => state);
+  const { isLoading } = state.common;
+
+  useEffect(() => {
+    console.log("State", state);
+  }, [state]);
+
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router />
-        </Provider>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <React.Fragment>
+      <Router />
+      <PrimaryLoading open={isLoading} />
+    </React.Fragment>
   );
 };
 

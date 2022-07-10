@@ -7,12 +7,6 @@ import Error from "../pages/Error";
 import Login from "../pages/Login";
 
 const Router = () => {
-  const state = useSelector((state) => state);
-
-  useEffect(() => {
-    console.log("State", state);
-  }, [state]);
-
   return (
     <HashRouter>
       <Routes>
