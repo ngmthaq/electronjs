@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Router from "./router";
-import PrimaryLoading from "./components/PrimaryLoading";
+import { PrimaryLoading } from "./components";
 
 const App = () => {
   const state = useSelector((state) => state);
