@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { KeyConstant } from "../../constants";
+import { KeyConstant } from "../../const";
 import { getStorage } from "../../helpers";
 
 const name = "auth";

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { PathConstant } from "../constants";
+import { PathConstant } from "../const";
 import { AuthRoute } from "./components";
 import Error from "../pages/Error";
 import Login from "../pages/Login";

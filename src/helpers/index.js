@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { KeyConstant } from "../constants";
+import { KeyConstant } from "../const";
+import { primaryTitleBarHeight } from "../components/PrimaryTitleBar";
 
 export const uuid = () => {
   return uuidv4();
@@ -98,4 +99,12 @@ export const toSnake = (obj) => {
     }
   }
   return newObj;
+};
+
+export const vw = (number) => {
+  return number + "vw";
+};
+
+export const vh = (number) => {
+  return `calc(${number}vh - ${primaryTitleBarHeight}px)`;
 };

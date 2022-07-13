@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/material";
 import Router from "./router";
-import { PrimaryLoading } from "./components";
+import { vh } from "./helpers";
+import { PrimaryLoading, PrimaryTitleBar } from "./components";
 
 const App = () => {
+  const classes = useStyles();
   const state = useSelector((state) => state);
   const { isLoading } = state.common;
 
@@ -13,10 +17,20 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <Router />
-      <PrimaryLoading open={isLoading} />
+      <PrimaryTitleBar />
+      <Box className={classes.app}>
+        <Router />
+        <PrimaryLoading open={isLoading} />
+      </Box>
     </React.Fragment>
   );
 };
 
 export default App;
+
+const useStyles = makeStyles((theme) => ({
+  app: {
+    overflow: "auto",
+    height: vh(100),
+  },
+}));

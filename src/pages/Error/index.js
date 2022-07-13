@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Box, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ArrowBack } from "@mui/icons-material";
-import { ImageConstant, LangConstant } from "../../constants";
+import { ImageConstant, LangConstant } from "../../const";
 
 const NotFound = () => {
   const classes = useStyles();
