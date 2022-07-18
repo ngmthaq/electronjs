@@ -8,9 +8,9 @@ const palette = {
     white: white,
   },
   primary: {
-    main: "#90caf9",
-    light: "#e3f2fd",
-    dark: "#42a5f5",
+    main: "#0d6efd",
+    light: "#0a58ca",
+    dark: "#074298",
     contrastText: white,
   },
   secondary: {

@@ -17,7 +17,7 @@ const LangDropdown = () => {
 
   return (
     <Box>
-      <Typography onClick={onOpenDropdown}>EN</Typography>
+      <Typography onClick={onOpenDropdown}>VI</Typography>
       <Popover
         disableAutoFocus
         disableEnforceFocus

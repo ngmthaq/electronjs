@@ -1,5 +1,18 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+* {
+    font-family: "Montserrat", sans-serif !important;
+}
+
 body {
-    overflow: hidden;
+    overflow: hidden !important;
+}
+
+.user-select-none {
+    user-select: none !important;
 }
 
 ::-webkit-scrollbar {
