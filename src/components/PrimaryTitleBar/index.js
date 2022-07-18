@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import { Box, SvgIcon } from "@mui/material";
+import { Box, SvgIcon, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Close, CropSquare, HorizontalRule } from "@mui/icons-material";
+import { ImageConstant } from "../../const";
 
 const PrimaryTitleBar = () => {
   const classes = useStyles();
@@ -59,7 +60,12 @@ const PrimaryTitleBar = () => {
 
   return (
     <Box component="header" id={primaryTitleBarId} className={classes.root}>
-      <Box></Box>
+      <Box className={classes.detail}>
+        <ImageConstant.LogoIcon className={classes.logo} />
+        <Typography className={classes.title}>
+          {process.env.APP_NAME}
+        </Typography>
+      </Box>
       <Box className={classes.icons}>
         <Box className={clsx(classes.icon)} onClick={onMinimizeWindow}>
           <HorizontalRule className={classes.svg} />
@@ -88,7 +94,7 @@ export default PrimaryTitleBar;
 
 export const primaryTitleBarId = "primary-title-bar";
 
-export const primaryTitleBarHeight = 32;
+export const primaryTitleBarHeight = 35;
 
 const RestoreWindowIcon = (props) => {
   const { className } = props;
@@ -170,5 +176,24 @@ const useStyles = makeStyles((theme) => ({
     width: 13,
     height: 13,
     color: theme.palette.grey[500],
+  },
+
+  logo: {
+    width: primaryTitleBarHeight - 12,
+    height: primaryTitleBarHeight - 12,
+    marginLeft: 8,
+    marginRight: 8,
+  },
+
+  detail: {
+    display: "flex",
+    alignItems: "center",
+  },
+
+  title: {
+    color: theme.palette.common.white,
+    fontSize: 12,
+    fontWeight: 400,
+    lineHeight: "14px",
   },
 }));
