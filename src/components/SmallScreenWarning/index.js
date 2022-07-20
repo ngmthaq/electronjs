@@ -2,16 +2,15 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { ArrowBack } from "@mui/icons-material";
 import { ImageConstant, LangConstant } from "../../const";
-import { vw, vh } from "../../helpers";
+import { vh, vw } from "../../helpers";
 
-const NotFound = () => {
+const SmallScreenWarning = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
   useEffect(() => {
-    console.error("Page not found");
+    console.warn("Small screen warning");
   }, []);
 
   return (
@@ -22,17 +21,13 @@ const NotFound = () => {
         src={ImageConstant.ErrorImage}
       />
       <Typography variant="h5" className={classes.text}>
-        {getLabel(LangConstant.TXT_ERROR)}
+        {getLabel(LangConstant.TXT_SMALL_SCREEN_WARNING)}
       </Typography>
-      <Box className={classes.back}>
-        <ArrowBack className={classes.icon} />
-        <Typography>{getLabel(LangConstant.TXT_BACK)}</Typography>
-      </Box>
     </Box>
   );
 };
 
-export default NotFound;
+export default SmallScreenWarning;
 
 const useStyles = makeStyles((theme) => ({
   root: {

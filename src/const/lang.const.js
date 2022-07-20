@@ -16,3 +16,4 @@ export const TXT_ERROR = "TXT_ERROR";
 export const TXT_BACK = "TXT_BACK";
 export const TXT_LOGIN = "TXT_LOGIN";
 export const TXT_LOGIN_TITLE = "TXT_LOGIN_TITLE";
+export const TXT_SMALL_SCREEN_WARNING = "TXT_SMALL_SCREEN_WARNING";

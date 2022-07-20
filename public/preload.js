@@ -19,9 +19,14 @@ const close = () => {
   ipcRenderer.send("close");
 };
 
+const closeDevtool = () => {
+  ipcRenderer.send("closeDevtool");
+};
+
 contextBridge.exposeInMainWorld("electron", {
   minimize: minimize,
   maximize: maximize,
   smallscreen: smallscreen,
   close: close,
+  closeDevtool: closeDevtool,
 });

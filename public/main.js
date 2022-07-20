@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const path = require("path");
+const installExtension = require("electron-devtools-installer");
+const { REDUX_DEVTOOLS } = require("electron-devtools-installer");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
@@ -21,6 +22,9 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
+  // Open fullscreen on first init
+  mainWindow.maximize();
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
@@ -39,6 +43,10 @@ const createWindow = () => {
 
   ipcMain.on("close", () => {
     mainWindow.close();
+  });
+
+  ipcMain.on("closeDevtool", () => {
+    mainWindow.webContents.closeDevTools();
   });
 };
 
@@ -66,3 +74,8 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+app.whenReady().then(() => {
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log("An error occurred: ", err));
+});

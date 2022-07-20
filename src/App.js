@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import Router from "./router";
 import { vh } from "./helpers";
-import { PrimaryLoading, PrimaryTitleBar } from "./components";
+import {
+  PrimaryLoading,
+  PrimaryTitleBar,
+  SmallScreenWarning,
+} from "./components";
 
 const App = () => {
   const classes = useStyles();
   const state = useSelector((state) => state);
+  const isDownLg = useMediaQuery((theme) => theme.breakpoints.down("lg"));
   const { isLoading } = state.common;
 
   useEffect(() => {
@@ -19,7 +24,7 @@ const App = () => {
     <React.Fragment>
       <PrimaryTitleBar />
       <Box className={classes.app}>
-        <Router />
+        {isDownLg ? <SmallScreenWarning /> : <Router />}
         <PrimaryLoading open={isLoading} />
       </Box>
     </React.Fragment>
