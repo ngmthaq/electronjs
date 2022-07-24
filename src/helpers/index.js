@@ -108,3 +108,47 @@ export const vw = (number) => {
 export const vh = (number) => {
   return `calc(${number}vh - ${primaryTitleBarHeight}px)`;
 };
+
+export const deepClone = (data) => {
+  if (data && data !== null && typeof data === "object") {
+    return JSON.parse(JSON.stringify(data));
+  }
+
+  return null;
+};
+
+export const isJson = (data) => {
+  try {
+    JSON.parse(data);
+  } catch (error) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isObj = (data) => {
+  return data &&
+    typeof data === "object" &&
+    data !== null &&
+    !Array.isArray(data)
+    ? true
+    : false;
+};
+
+export const isArray = (data) => {
+  return data &&
+    typeof data === "object" &&
+    data !== null &&
+    Array.isArray(data)
+    ? true
+    : false;
+};
+
+export const isObjEqual = (obj1, obj2) => {
+  return isObj(obj1) && isObj(obj2) && _.isEqual(obj1, obj2);
+};
+
+export const isArrayEqual = (arr1, arr2) => {
+  return isArray(arr1) && isArray(arr2) && _.isEqual(arr1, arr2);
+};
