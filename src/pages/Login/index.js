@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import {
@@ -12,26 +12,51 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { ArrowBack } from "@mui/icons-material";
 import { ImageConstant, LangConstant } from "../../const";
 import authAction from "../../store/auth/auth.action";
 import { vh } from "../../helpers";
 import { LangDropdown } from "./components";
 import clsx from "clsx";
+import { useValidator } from "../../hooks";
+import { Validator } from "../../hooks/useValidator";
 
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { t: getLabel } = useTranslation();
 
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+    remember: false,
+  });
+
+  const [validator, setValidator] = useValidator({
+    form: form,
+    rules: [
+      Validator.isEmail({ name: "username", input: form.username }),
+      Validator.isRequired({ name: "password", input: form.password }),
+    ],
+  });
+
+  const onInputChange = (e) => {
+    setForm((state) => ({ ...state, [e.target.id]: e.target.value }));
+  };
+
+  const onCheckboxChange = () => {
+    let status = !form.remember;
+    setForm((state) => ({ ...state, remember: status }));
+  };
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    setValidator();
+  };
+
   useEffect(() => {
     console.log("Login page");
   }, []);
-
-  const onLogin = () => {
-    dispatch(authAction.login());
-  };
-
+  console.log(validator);
   return (
     <Grid container className={classes.root}>
       <Grid item md={4} xs={12} className={classes.grid}>
@@ -40,33 +65,46 @@ const Login = () => {
           <LangDropdown />
         </Box>
         <Box className={classes.formWrapper}>
-          <Box component="form" className={classes.form}>
+          <Box
+            component="form"
+            className={classes.form}
+            id={textFields.form}
+            onSubmit={onLogin}
+          >
             <Typography className={classes.loginTitle}>
               {getLabel(LangConstant.TXT_LOGIN_TITLE)}
             </Typography>
             <Box className={classes.formControl}>
               <TextField
-                required
                 fullWidth
-                id="username"
+                id={textFields.username.id}
                 label={getLabel(LangConstant.L_USERNAME)}
                 variant="outlined"
                 className={classes.textField}
+                value={form.username}
+                onChange={onInputChange}
+                error={validator?.username?.isFailure || false}
+                helperText={validator?.username?.message || ""}
               />
               <TextField
-                required
                 fullWidth
-                id="password"
+                id={textFields.password.id}
                 label={getLabel(LangConstant.L_PASSWORD)}
                 variant="outlined"
                 className={classes.textField}
+                value={form.password}
+                onChange={onInputChange}
+                error={validator?.password?.isFailure || false}
+                helperText={validator?.password?.message || ""}
               />
               <FormControlLabel
-                control={<Checkbox defaultChecked />}
                 label={getLabel(LangConstant.L_REMEMBER)}
                 className={clsx("user-select-none", classes.remember)}
+                control={
+                  <Checkbox value={form.remember} onChange={onCheckboxChange} />
+                }
               />
-              <Button variant="contained" size="large" fullWidth>
+              <Button variant="contained" size="large" fullWidth type="submit">
                 {getLabel(LangConstant.TXT_LOGIN)}
               </Button>
             </Box>
@@ -87,6 +125,18 @@ const Login = () => {
 };
 
 export default Login;
+
+const textFields = {
+  form: "login-form",
+  username: {
+    id: "username",
+    errorId: "username-error",
+  },
+  password: {
+    id: "password",
+    errorId: "password-error",
+  },
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {},

@@ -1,1 +1,3 @@
-export const useDebounce = () => {};
+import useValidator from "./useValidator";
+
+export { useValidator };
