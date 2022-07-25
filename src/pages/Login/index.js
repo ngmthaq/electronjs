@@ -31,7 +31,7 @@ const Login = () => {
     remember: false,
   });
 
-  const [validator, setValidator] = useValidator({
+  const [validator, setValidator, clearValidator] = useValidator({
     form: form,
     rules: [
       Validator.isEmail({ name: "username", input: form.username }),
@@ -41,6 +41,14 @@ const Login = () => {
 
   const onInputChange = (e) => {
     setForm((state) => ({ ...state, [e.target.id]: e.target.value }));
+  };
+
+  const onInputFocus = (e) => {
+    clearValidator(e.target.id);
+  };
+
+  const onInputBlur = (e) => {
+    setValidator(e.target.id);
   };
 
   const onCheckboxChange = () => {
@@ -85,6 +93,8 @@ const Login = () => {
                 onChange={onInputChange}
                 error={validator?.username?.isFailure || false}
                 helperText={validator?.username?.message || ""}
+                onFocus={onInputFocus}
+                onBlur={onInputBlur}
               />
               <TextField
                 fullWidth
@@ -96,6 +106,8 @@ const Login = () => {
                 onChange={onInputChange}
                 error={validator?.password?.isFailure || false}
                 helperText={validator?.password?.message || ""}
+                onFocus={onInputFocus}
+                onBlur={onInputBlur}
               />
               <FormControlLabel
                 label={getLabel(LangConstant.L_REMEMBER)}

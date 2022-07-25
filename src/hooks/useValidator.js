@@ -6,8 +6,24 @@ const useValidator = ({ form, rules }) => {
   const [data, setData] = useState(null);
   const [tmpData, setTmpData] = useState(null);
 
-  const onRunningValidator = () => {
-    setData(tmpData);
+  const onRunningValidator = (key) => {
+    if (key) {
+      let validatorItem = tmpData[key];
+      setData((state) => ({ ...state, [key]: validatorItem }));
+    } else {
+      setData(tmpData);
+    }
+  };
+
+  const onClearValidator = (key) => {
+    if (key) {
+      setData((state) => ({
+        ...state,
+        [key]: { ...defaultOutput },
+      }));
+    } else {
+      setData(null);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +39,7 @@ const useValidator = ({ form, rules }) => {
     setTmpData(validateObj);
   }, [form]);
 
-  return [data, onRunningValidator];
+  return [data, onRunningValidator, onClearValidator];
 };
 
 const Validator = ({ rules }) => {
@@ -39,6 +55,11 @@ const Validator = ({ rules }) => {
 const objValidateMsg = lang.t(LangConstant.OBJ_VALIDATION_MSG, {
   returnObjects: true,
 });
+
+const defaultOutput = {
+  isFailure: false,
+  message: "",
+};
 
 const isEmail = ({ name, input, message = null }) => ({
   name: name,
