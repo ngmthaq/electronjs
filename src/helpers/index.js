@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { KeyConstant } from "../const";
 import { primaryTitleBarHeight } from "../components/PrimaryTitleBar";
+import lang from "../language";
 
 export const uuid = () => {
   return uuidv4();
@@ -151,4 +152,8 @@ export const isObjEqual = (obj1, obj2) => {
 
 export const isArrayEqual = (arr1, arr2) => {
   return isArray(arr1) && isArray(arr2) && _.isEqual(arr1, arr2);
+};
+
+export const getRequiredLabel = (label, isGetLabelFromLang = true) => {
+  return isGetLabelFromLang ? lang.t(label) + " *" : label + " *";
 };

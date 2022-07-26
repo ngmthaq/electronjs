@@ -6,6 +6,7 @@ export const VIETNAM_LOCALE = "vi";
 export const L_USERNAME = "L_USERNAME";
 export const L_PASSWORD = "L_PASSWORD";
 export const L_REMEMBER = "L_REMEMBER";
+export const L_EMAIL = "L_EMAIL";
 
 // Object
 export const OBJ_VALIDATION_MSG = "OBJ_VALIDATION_MSG";

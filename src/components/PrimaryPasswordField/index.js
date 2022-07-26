@@ -30,7 +30,6 @@ const PrimaryPasswordField = ({
 
   return (
     <TextField
-      required
       fullWidth
       id={id}
       label={label}

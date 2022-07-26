@@ -15,7 +15,7 @@ import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
 import { ImageConstant, LangConstant } from "../../const";
 import authAction from "../../store/auth/auth.action";
-import { vh } from "../../helpers";
+import { getRequiredLabel, vh } from "../../helpers";
 import { useValidator } from "../../hooks";
 import { Validator } from "../../hooks/useValidator";
 import LangDropdown from "./LangDropdown";
@@ -27,7 +27,7 @@ const Login = () => {
   const { t: getLabel } = useTranslation();
 
   const [form, setForm] = useState({
-    username: "",
+    email: "",
     password: "",
     remember: false,
   });
@@ -35,7 +35,7 @@ const Login = () => {
   const [validator, setValidator, clearValidator] = useValidator({
     form: form,
     rules: [
-      Validator.isEmail({ name: "username", input: form.username }),
+      Validator.isEmail({ name: "email", input: form.email }),
       Validator.isRequired({ name: "password", input: form.password }),
     ],
   });
@@ -86,21 +86,21 @@ const Login = () => {
             <Box className={classes.formControl}>
               <TextField
                 fullWidth
-                id={textFields.username.id}
-                label={getLabel(LangConstant.L_USERNAME)}
+                id={textFields.email.id}
+                label={getRequiredLabel(LangConstant.L_EMAIL)}
                 variant="outlined"
                 className={classes.textField}
-                value={form.username}
+                value={form.email}
                 onChange={onInputChange}
-                error={validator?.username?.isFailure || false}
-                helperText={validator?.username?.message || ""}
+                error={validator?.email?.isFailure || false}
+                helperText={validator?.email?.message || ""}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
               />
               <PrimaryPasswordField
                 fullWidth
                 id={textFields.password.id}
-                label={getLabel(LangConstant.L_PASSWORD)}
+                label={getRequiredLabel(LangConstant.L_PASSWORD)}
                 variant="outlined"
                 className={classes.textField}
                 value={form.password}
@@ -141,9 +141,9 @@ export default Login;
 
 const textFields = {
   form: "login-form",
-  username: {
-    id: "username",
-    errorId: "username-error",
+  email: {
+    id: "email",
+    errorId: "email-error",
   },
   password: {
     id: "password",
