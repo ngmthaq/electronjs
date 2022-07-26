@@ -12,13 +12,13 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import clsx from "clsx";
 import { ImageConstant, LangConstant } from "../../const";
 import authAction from "../../store/auth/auth.action";
 import { vh } from "../../helpers";
-import { LangDropdown } from "./components";
-import clsx from "clsx";
 import { useValidator } from "../../hooks";
 import { Validator } from "../../hooks/useValidator";
+import LangDropdown from "./LangDropdown";
 
 const Login = () => {
   const classes = useStyles();
@@ -64,7 +64,7 @@ const Login = () => {
   useEffect(() => {
     console.log("Login page");
   }, []);
-  console.log(validator);
+
   return (
     <Grid container className={classes.root}>
       <Grid item md={4} xs={12} className={classes.grid}>
@@ -108,6 +108,7 @@ const Login = () => {
                 helperText={validator?.password?.message || ""}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
+                type="password"
               />
               <FormControlLabel
                 label={getLabel(LangConstant.L_REMEMBER)}
