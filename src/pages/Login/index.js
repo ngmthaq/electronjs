@@ -19,6 +19,7 @@ import { vh } from "../../helpers";
 import { useValidator } from "../../hooks";
 import { Validator } from "../../hooks/useValidator";
 import LangDropdown from "./LangDropdown";
+import { PrimaryPasswordField } from "../../components";
 
 const Login = () => {
   const classes = useStyles();
@@ -96,7 +97,7 @@ const Login = () => {
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
               />
-              <TextField
+              <PrimaryPasswordField
                 fullWidth
                 id={textFields.password.id}
                 label={getLabel(LangConstant.L_PASSWORD)}
@@ -108,7 +109,6 @@ const Login = () => {
                 helperText={validator?.password?.message || ""}
                 onFocus={onInputFocus}
                 onBlur={onInputBlur}
-                type="password"
               />
               <FormControlLabel
                 label={getLabel(LangConstant.L_REMEMBER)}
