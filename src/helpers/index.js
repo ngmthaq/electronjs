@@ -51,12 +51,12 @@ export const camelToSnakeCase = (str) =>
     (letter) => `_${letter.toLowerCase()}`
   );
 
-export const toCamel = (obj) => {
+export const snakeToCamel = (obj) => {
   var newObj, origKey, newKey, value;
   if (obj instanceof Array) {
     return obj.map(function (value) {
       if (typeof value === "object") {
-        value = toCamel(value);
+        value = snakeToCamel(value);
       }
       return value;
     });
@@ -67,7 +67,7 @@ export const toCamel = (obj) => {
         newKey = snakeToCamelCase(origKey);
         value = obj[origKey];
         if (value instanceof Array || (value && value.constructor === Object)) {
-          value = toCamel(value);
+          value = snakeToCamel(value);
         }
         newObj[newKey] = value;
       }
@@ -76,12 +76,12 @@ export const toCamel = (obj) => {
   return newObj;
 };
 
-export const toSnake = (obj) => {
+export const camelToSnake = (obj) => {
   var newObj, origKey, newKey, value;
   if (obj instanceof Array) {
     return obj.map(function (value) {
       if (typeof value === "object") {
-        value = toSnake(value);
+        value = camelToSnake(value);
       }
       return value;
     });
@@ -92,7 +92,7 @@ export const toSnake = (obj) => {
         newKey = camelToSnakeCase(origKey);
         value = obj[origKey];
         if (value instanceof Array || (value && value.constructor === Object)) {
-          value = toSnake(value);
+          value = camelToSnake(value);
         }
         newObj[newKey] = value;
       }
