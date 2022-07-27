@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import lang from "../../language";
 import rules from "./rules";
 
 const useValidator = ({ form, rules }) => {
@@ -37,6 +38,10 @@ const useValidator = ({ form, rules }) => {
 
     setTmpData(validateObj);
   }, [form]);
+
+  useEffect(() => {
+    setData(null);
+  }, [lang.language]);
 
   return [data, onRunningValidator, onClearValidator];
 };
