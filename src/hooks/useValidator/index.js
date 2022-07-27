@@ -1,32 +1,32 @@
 import { useState, useEffect } from "react";
-import lang from "../../language";
+import { AppConstant } from "../../const";
 import rules from "./rules";
 
 const useValidator = ({ form, rules }) => {
   const [data, setData] = useState(null);
   const [tmpData, setTmpData] = useState(null);
 
-  const onRunningValidator = (key) => {
-    if (key) {
-      let validatorItem = tmpData[key];
-      setData((state) => ({ ...state, [key]: validatorItem }));
+  const onRunningValidator = (name) => {
+    if (name) {
+      let validatorItem = tmpData[name];
+      setData((state) => ({ ...state, [name]: validatorItem }));
     } else {
       setData(tmpData);
     }
   };
 
-  const onClearValidator = (key) => {
-    if (key) {
+  const onClearValidator = (name) => {
+    if (name) {
       setData((state) => ({
         ...state,
-        [key]: { ...defaultOutput },
+        [name]: { ...defaultOutput },
       }));
     } else {
       setData(null);
     }
   };
 
-  useEffect(() => {
+  const onTrackingValidator = () => {
     const validatorData = Validator({ rules });
     const validateObj = validatorData.reduce((obj, data, index) => {
       let key = data.name;
@@ -36,12 +36,33 @@ const useValidator = ({ form, rules }) => {
       return obj;
     }, {});
 
-    setTmpData(validateObj);
+    return validateObj;
+  };
+
+  useEffect(() => {
+    let result = onTrackingValidator();
+    setTmpData(result);
   }, [form]);
 
   useEffect(() => {
-    setData(null);
-  }, [lang.language]);
+    let onChangeLanguage = () => {
+      let tmpResult = onTrackingValidator();
+      setTmpData(tmpResult);
+      setData(null);
+    };
+
+    window.addEventListener(
+      AppConstant.EVENTS.changeLanguage,
+      onChangeLanguage
+    );
+
+    return () => {
+      window.removeEventListener(
+        AppConstant.EVENTS.changeLanguage,
+        onChangeLanguage
+      );
+    };
+  });
 
   return [data, onRunningValidator, onClearValidator];
 };

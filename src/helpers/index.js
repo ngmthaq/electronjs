@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { KeyConstant } from "../const";
+import { AppConstant, KeyConstant } from "../const";
 import { PRIMARY_TITLE_BAR_HEIGHT } from "../components/PrimaryTitleBar";
 import lang from "../language";
 
@@ -156,4 +156,12 @@ export const isArrayEqual = (arr1, arr2) => {
 
 export const getRequiredLabel = (label, isGetLabelFromLang = true) => {
   return isGetLabelFromLang ? lang.t(label) + " *" : label + " *";
+};
+
+export const changeLanguage = (locale) => {
+  if (locale !== lang.language) {
+    lang.changeLanguage(locale);
+    setStorage(KeyConstant.LOCAL_STORAGE.lang, locale);
+    window.dispatchEvent(new Event(AppConstant.EVENTS.changeLanguage));
+  }
 };

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
 import { Box, Popover, Typography } from "@mui/material";
-import { ImageConstant, KeyConstant, LangConstant } from "../../const";
-import { setStorage } from "../../helpers";
+import { ImageConstant, LangConstant } from "../../const";
+import { changeLanguage } from "../../helpers";
 
 const LangDropdown = () => {
   const classes = useStyles();
@@ -24,8 +24,7 @@ const LangDropdown = () => {
     let locales = LOCALE_OPTIONS.map((opt) => opt.key);
 
     if (locales.includes(locale)) {
-      i18n.changeLanguage(locale);
-      setStorage(KeyConstant.LOCAL_STORAGE.lang, locale);
+      changeLanguage(locale);
     } else {
       // TODO: Show error: Cannot find locale
     }

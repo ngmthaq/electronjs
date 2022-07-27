@@ -1,9 +1,15 @@
-import { LangConstant } from "../../const";
+import { KeyConstant, LangConstant } from "../../const";
+import { getStorage } from "../../helpers";
 import lang from "../../language";
 
-const objValidateMsg = lang.t(LangConstant.OBJ_VALIDATION_MSG, {
-  returnObjects: true,
-});
+const getMessage = () => {
+  let rs = lang.t(LangConstant.OBJ_VALIDATION_MSG, {
+    returnObjects: true,
+    lng: getStorage(KeyConstant.LOCAL_STORAGE.lang),
+  });
+
+  return rs;
+};
 
 const getOutputObj = (name, isFailure, message = "", customMessage = null) => {
   return customMessage === null
@@ -31,7 +37,7 @@ const isEmail = ({ name, input, message = null }) => ({
 
     return result
       ? getOutputObj(name, false)
-      : getOutputObj(name, true, objValidateMsg.email, message);
+      : getOutputObj(name, true, getMessage().email, message);
   },
 });
 
@@ -46,7 +52,7 @@ const isNumber = ({ name, input, message = null }) => ({
 
     return result
       ? getOutputObj(name, false)
-      : getOutputObj(name, true, objValidateMsg.number, message);
+      : getOutputObj(name, true, getMessage().number, message);
   },
 });
 
@@ -60,7 +66,7 @@ const isRequired = ({ name, input, message = null }) => ({
 
     return result
       ? getOutputObj(name, false)
-      : getOutputObj(name, true, objValidateMsg.required, message);
+      : getOutputObj(name, true, getMessage().required, message);
   },
 });
 
