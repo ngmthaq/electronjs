@@ -1,4 +1,5 @@
 export const VIETNAM_LOCALE = "vi";
+export const ENGLISH_LOCALE = "en";
 
 // Array
 
@@ -19,3 +20,5 @@ export const TXT_BACK = "TXT_BACK";
 export const TXT_LOGIN = "TXT_LOGIN";
 export const TXT_LOGIN_TITLE = "TXT_LOGIN_TITLE";
 export const TXT_SMALL_SCREEN_WARNING = "TXT_SMALL_SCREEN_WARNING";
+export const TXT_VIETNAMESE = "TXT_VIETNAMESE";
+export const TXT_ENGLISH = "TXT_ENGLISH";

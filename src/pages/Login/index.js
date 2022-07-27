@@ -62,10 +62,6 @@ const Login = () => {
     setValidator();
   };
 
-  useEffect(() => {
-    console.log("Login page");
-  }, []);
-
   return (
     <Grid container className={classes.root}>
       <Grid item md={4} xs={12} className={classes.grid}>

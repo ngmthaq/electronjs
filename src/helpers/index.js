@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { KeyConstant } from "../const";
-import { primaryTitleBarHeight } from "../components/PrimaryTitleBar";
+import { PRIMARY_TITLE_BAR_HEIGHT } from "../components/PrimaryTitleBar";
 import lang from "../language";
 
 export const uuid = () => {
@@ -107,7 +107,7 @@ export const vw = (number) => {
 };
 
 export const vh = (number) => {
-  return `calc(${number}vh - ${primaryTitleBarHeight}px)`;
+  return `calc(${number}vh - ${PRIMARY_TITLE_BAR_HEIGHT}px)`;
 };
 
 export const deepClone = (data) => {

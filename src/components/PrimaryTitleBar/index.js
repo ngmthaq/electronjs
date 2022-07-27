@@ -59,7 +59,7 @@ const PrimaryTitleBar = () => {
   });
 
   return (
-    <Box component="header" id={primaryTitleBarId} className={classes.root}>
+    <Box component="header" id={PRIMARY_TITLE_BAR_ID} className={classes.root}>
       <Box className={classes.detail}>
         <ImageConstant.LogoIcon className={classes.logo} />
         <Typography className={classes.title}>
@@ -92,9 +92,9 @@ const PrimaryTitleBar = () => {
 
 export default PrimaryTitleBar;
 
-export const primaryTitleBarId = "primary-title-bar";
+export const PRIMARY_TITLE_BAR_ID = "primary-title-bar-id";
 
-export const primaryTitleBarHeight = 35;
+export const PRIMARY_TITLE_BAR_HEIGHT = 35;
 
 const RestoreWindowIcon = (props) => {
   const { className } = props;
@@ -125,7 +125,7 @@ RestoreWindowIcon.defaultProps = {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.common.black,
-    height: primaryTitleBarHeight,
+    height: PRIMARY_TITLE_BAR_HEIGHT,
     userSelect: "none",
     WebkitAppRegion: "drag",
     WebkitUserSelect: "none",
@@ -144,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
 
   icon: {
     width: "100%",
-    height: primaryTitleBarHeight,
+    height: PRIMARY_TITLE_BAR_HEIGHT,
     cursor: "pointer",
     backgroundColor: "transparent",
     display: "flex",
@@ -179,8 +179,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   logo: {
-    width: primaryTitleBarHeight - 12,
-    height: primaryTitleBarHeight - 12,
+    width: PRIMARY_TITLE_BAR_HEIGHT - 12,
+    height: PRIMARY_TITLE_BAR_HEIGHT - 12,
     marginLeft: 8,
     marginRight: 8,
   },
