@@ -18,10 +18,10 @@ export const getStorage = (key, defaultValue = null) => {
 };
 
 export const setStorage = (key, value) => {
-  if (value) {
+  if (value && key) {
     localStorage.setItem(key, JSON.stringify(value));
   } else {
-    localStorage.removeItem(key);
+    throw new Error("setStorage helper function require key and value");
   }
 };
 
