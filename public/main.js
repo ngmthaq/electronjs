@@ -38,14 +38,6 @@ const createWindow = () => {
   ipcMain.on("smallscreen", () => {
     mainWindow.unmaximize();
   });
-
-  ipcMain.on("close", () => {
-    mainWindow.close();
-  });
-
-  ipcMain.on("closeDevtool", () => {
-    mainWindow.webContents.closeDevTools();
-  });
 };
 
 // This method will be called when Electron has finished
