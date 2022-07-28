@@ -3,8 +3,8 @@ const db = require("better-sqlite3")(process.env.DB_NAME);
 class BaseTable {
   conditions = DEFAULT_CONDITIONS;
   relations = DEFAULT_RELATIONS;
-  limit = DEFAULT_LIMIT;
-  offset = DEFAULT_OFFSET;
+  limitNumber = DEFAULT_LIMIT;
+  offsetNumber = DEFAULT_OFFSET;
   orderBy = DEFAULT_ORDER_BY;
   orderDir = DEFAULT_ORDER_DIR;
 
@@ -41,7 +41,7 @@ class BaseTable {
     return this;
   }
 
-  orderBy(column, dir = "asc") {
+  order(column, dir = "asc") {
     this.orderBy = column;
     this.orderDir = dir;
 
@@ -91,22 +91,25 @@ class BaseTable {
     return this;
   }
 
-  get(columns = ["*"]) {
+  get(...columns) {
+    if (columns.length === 0) columns = ["*"];
     let selectQuery = `SELECT ${columns.join(", ")} FROM ${this.tableName}`;
     let relationQuery = this.relations.join(" ");
-    let conditionQuery = `WHERE ${this.conditions.join(" ")}`;
+    let conditionQuery =
+      this.conditions.length > 0 ? `WHERE ${this.conditions.join(" ")}` : "";
+
     let query = `${selectQuery} ${relationQuery} ${conditionQuery}`;
 
     if (this.orderBy) {
       query = `${query} ORDER BY ${this.orderBy} ${this.orderDir}`;
     }
 
-    if (this.limit) {
-      query = `${query} LIMIT ${this.limit}`;
+    if (this.limitNumber) {
+      query = `${query} LIMIT ${this.limitNumber}`;
     }
 
-    if (this.offset) {
-      query = `${query} OFFSET ${this.offset}`;
+    if (this.offsetNumber) {
+      query = `${query} OFFSET ${this.offsetNumber}`;
     }
 
     this.resetValue();
@@ -114,22 +117,25 @@ class BaseTable {
     return db.prepare(query).all();
   }
 
-  first(columns = ["*"]) {
+  first(...columns) {
+    if (columns.length === 0) columns = ["*"];
     let selectQuery = `SELECT ${columns.join(", ")} FROM ${this.tableName}`;
     let relationQuery = this.relations.join(" ");
-    let conditionQuery = `WHERE ${this.conditions.join(" ")}`;
+    let conditionQuery =
+      this.conditions.length > 0 ? `WHERE ${this.conditions.join(" ")}` : "";
+      
     let query = `${selectQuery} ${relationQuery} ${conditionQuery}`;
 
     if (this.orderBy) {
       query = `${query} ORDER BY ${this.orderBy} ${this.orderDir}`;
     }
 
-    if (this.limit) {
-      query = `${query} LIMIT ${this.limit}`;
+    if (this.limitNumber) {
+      query = `${query} LIMIT ${this.limitNumber}`;
     }
 
-    if (this.offset) {
-      query = `${query} OFFSET ${this.offset}`;
+    if (this.offsetNumber) {
+      query = `${query} OFFSET ${this.offsetNumber}`;
     }
 
     this.resetValue();
@@ -193,8 +199,8 @@ class BaseTable {
   resetValue() {
     this.conditions = DEFAULT_CONDITIONS;
     this.relations = DEFAULT_RELATIONS;
-    this.limit = DEFAULT_LIMIT;
-    this.offset = DEFAULT_OFFSET;
+    this.limitNumber = DEFAULT_LIMIT;
+    this.offsetNumber = DEFAULT_OFFSET;
     this.orderBy = DEFAULT_ORDER_BY;
     this.orderDir = DEFAULT_ORDER_DIR;
   }

@@ -8,11 +8,7 @@ class DatabaseTable extends BaseTable {
 
   // Other sql query
   getVersion() {
-    let sql = `SELECT ${DATABASE_TABLE_COLUMN_NAME.version}
-                FROM ${this.tableName} ORDER BY ${DATABASE_TABLE_COLUMN_NAME.id} DESC
-                LIMIT 1`;
-
-    return db.prepare(sql).get();
+    return this.order(DATABASE_TABLE_COLUMN_NAME.id, "desc").limit(1).first();
   }
 }
 
@@ -27,7 +23,8 @@ const DATABASE_TABLE_COLUMN_NAME = {
 };
 
 const DATABASE_TABLE_COLUMN_CONFIG = {
-  [DATABASE_TABLE_COLUMN_NAME.id]: "INT UNSIGNED AUTO_INCREMENT DEFAULT 1 NOT NULL",
+  [DATABASE_TABLE_COLUMN_NAME.id]:
+    "INT UNSIGNED AUTO_INCREMENT DEFAULT 1 NOT NULL",
   [DATABASE_TABLE_COLUMN_NAME.uuid]: "VARCHAR(255) PRIMARY KEY NOT NULL",
   [DATABASE_TABLE_COLUMN_NAME.version]: "INT UNSIGNED UNIQUE NOT NULL",
   [DATABASE_TABLE_COLUMN_NAME.createdAt]: "BIGINT DEFAULT 0 NOT NULL",
