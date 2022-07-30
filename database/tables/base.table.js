@@ -49,13 +49,13 @@ class BaseTable {
   }
 
   limit(limit = 10) {
-    this.limit = limit;
+    this.limitNumber = limit;
 
     return this;
   }
 
   offset(offset = 0) {
-    this.offset = offset;
+    this.offsetNumber = offset;
 
     return this;
   }
@@ -123,7 +123,7 @@ class BaseTable {
     let relationQuery = this.relations.join(" ");
     let conditionQuery =
       this.conditions.length > 0 ? `WHERE ${this.conditions.join(" ")}` : "";
-      
+
     let query = `${selectQuery} ${relationQuery} ${conditionQuery}`;
 
     if (this.orderBy) {
